@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="ad.size" content="width=300,height=66"/>
+    <title>ANET360 Calculator</title>
+
+    <script type="text/javascript" src="
+https://s0.2mdn.net/ads/studio/cached_libs/cssplugin_1.19.0_cfbff7d208ccfdbe176b9855af1eb1fa_min.js"></script>
+    <script type="text/javascript" src="
+https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3640a06ac39e9_min.js"></script>
+    <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/easepack_1.19.0_be87087c08fcec83e2b64c70571fe91f_min.js"></script>
+    <script src="anim.js"></script>
+   
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" /> -->
+    <style type="text/css">
+        
+        /*---- FOR PRESENTATION ----*/
+        body{
+            background-color: #222222;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+        }
+        #wrapper {
+            margin-left: calc(50% - 369px);
+            margin-top: 160px;
+        }
+        /*---- FOR ANIMATION ----*/
+        #wrapper {
+            background: #FFFFFF;
+            width:738px;
+            height:500px;
+            overflow: hidden;
+            position:relative;
+            display:none;
+            /*ed5f2e*/
+        }
+        #wrapper div {
+            position:absolute;
+        }
+        #calc_title {
+            width:100%;
+            text-align: center;
+            font-size:30px;
+            padding-top:10px;
+            color: #ed5f2e;
+        }
+        .button {
+            text-align: center;
+            justify-content: center;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            border-radius:25px;
+            border: #ed5f2e 1px solid;
+            cursor: pointer;
+            background: #ed5f2e11;
+        }
+        .details {
+            align-items: left;
+            border-radius:25px;
+            border: #BBBBBB 1px solid;
+            pointer-events: none;
+            font-size:14px;
+        }
+        .button:hover{
+            background: #ed5f2e;
+            color: white;
+        }
+        .button:has(> div) {
+            pointer-events: none;
+        }
+        .active{
+            background: #ed5f2e;
+            color: white;
+        }
+        ul {
+            list-style-type: circle;
+            margin:10px;
+            margin-top:18px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- <ft-default clicktag> -->
+    
+    <div id="wrapper">
+        <div id="calc_title">Choose Your Package</div>
+        <div id="calc_main_buttons">
+            <div id="calc_main_buttons_0">Workshop Based</div>
+            <div id="calc_main_buttons_1">Licence Based</div>
+            <div id="calc_main_buttons_0_details">
+                <ul>
+                    <li>Basic interactive Safe Urban Driving course delivered by our certified trainer</li>
+                    <li>Virtual Reality smartphone application</li>
+                    <li>Printable PDF course content</li>
+                    <li>Printable PDF workbook</li>
+                </ul>
+            </div>
+            <div id="calc_main_buttons_1_details">
+                <ul>
+                    <li>Virtual Reality smartphone application</li>
+                    <li>Printable PDF course content</li>
+                    <li>Printable PDF workbook</li>
+                </ul>
+            </div>
+        </div>
+        <div id="calc_sub_buttons">
+            <div id="calc_sub_buttons_0">Basic Package</div>
+            <div id="calc_sub_buttons_1">Pro Package</div>
+            <div id="calc_sub_buttons_0_details">
+                <ul>
+                    <li>Virtual Reality smartphone application</li>
+                    <li>Printable PDF course content</li>
+                    <li>Printable PDF workbook</li>
+                </ul>
+            </div>
+            <div id="calc_sub_buttons_1_details">
+                <ul>
+                    <li>Basic interactive Safe Urban Driving course delivered by our certified trainer</li>
+                    <li>Virtual Reality smartphone application</li>
+                    <li>Printable PDF course content</li>
+                    <li>Printable PDF workbook</li>
+                </ul>
+            </div>
+        </div>
+        <div id="calc_fors">
+            <div id="calc_fors_0">FORS Member</div>
+            <div id="calc_fors_1">NOT FORS Member</div>
+        </div>
+        <div id="calc_input">
+            <label for="drivers">How many drivers you have?</label>
+            <input id="calc_slider" name="drivers" type="range" min=1 max=300 step=1 />
+        </div>
+    </div>
+
+    <!--</ft-default>
+    <script src="http://cdn.flashtalking.com/frameworks/js/api/2/9/html5API.js"></script>-->
+</body>
+
+</html>
