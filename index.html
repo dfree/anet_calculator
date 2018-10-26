@@ -40,7 +40,7 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
         #wrapper div {
             position:absolute;
         }
-        #calc_title {
+        #calc_title, #calc_drivers_question, #calc_drivers_num {
             width:100%;
             text-align: center;
             font-size:30px;
@@ -57,6 +57,10 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             border: #ed5f2e 1px solid;
             cursor: pointer;
             background: #ed5f2e11;
+            -webkit-user-select: none;  
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         .details {
             align-items: left;
@@ -76,11 +80,95 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             background: #ed5f2e;
             color: white;
         }
+        #calc_cover {
+            background: #FFFFFFEE;
+            color: #ed5f2e;
+            width:100%;
+            height:100%;
+        }
+        #calc_cover_output {
+            padding:40px;
+        }
+        #calc_cover_output div {
+            position:relative;
+        }
+        #calc_cover_output div span {
+            color: #777777;
+        }
+        #calc_close {
+            font-size:40px;
+            top:20px;
+            right:35px;
+            -webkit-user-select: none;  
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+        }
         ul {
             list-style-type: circle;
             margin:10px;
             margin-top:18px;
         }
+        *:focus,
+        *:active {
+            outline: 0;
+        }
+        input[type=range],
+        input[type=range], 
+        input[type=range] {
+            -webkit-appearance: none;
+            border-radius: 8px;
+            height: 7px;
+            border: 1px solid #bdc3c7;
+            background-color: #fff; 
+        }
+        input[type='range']::-webkit-slider-thumb,
+        input[type='range']::-webkit-slider-thumb,
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background-color: #ed5f2e;
+            border: 0px solid #bdc3c7;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        input[type=range]::-moz-range-track {
+            border-radius: 8px;
+            height: 7px;
+            border: 1px solid #bdc3c7;
+            background-color: #fff;
+        }
+        input[type=range]::-moz-range-thumb {
+            background: #ed5f2e;
+            border: 1px solid #bdc3c7;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-ms-fill-lower,
+        input[type="range"]::-ms-fill-upper {
+            background: transparent;
+        }
+        input[type="range"]::-ms-track {
+            border-radius: 8px;
+            height: 7px;
+            border: 1px solid #bdc3c7;
+            background-color: #fff;
+        }
+        input[type="range"]::-ms-thumb {
+            background-color: #ed5f2e;
+            border: 1px solid #bdc3c7;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -133,8 +221,16 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             <div id="calc_fors_1">NOT FORS Member</div>
         </div>
         <div id="calc_input">
-            <label for="drivers">How many drivers you have?</label>
-            <input id="calc_slider" name="drivers" type="range" min=1 max=300 step=1 />
+            <div id="calc_drivers_question">How many drivers you have?</div>
+            <div id="calc_drivers_num">6</div>
+            <input id="calc_slider" name="drivers" type="range" min=6 max=1001 step=1 value="6" />
+            <div id="calc_input_submit" class="button">Submit</div>
+        </div>
+
+        <div id="calc_cover">
+            <div id="calc_cover_output">
+            </div>
+            <div id="calc_close">×</div>
         </div>
     </div>
 
