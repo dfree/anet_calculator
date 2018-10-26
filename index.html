@@ -18,6 +18,7 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
     <style type="text/css">
         
         /*---- FOR PRESENTATION ----*/
+
         body{
             background-color: #222222;
             font-family: 'Poppins', sans-serif;
@@ -46,6 +47,10 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             font-size:30px;
             padding-top:10px;
             color: #ed5f2e;
+        }
+        #calc_drivers_question {
+            padding-top:0px!important;
+            margin-top:-8px;
         }
         .button {
             text-align: center;
@@ -168,7 +173,13 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             border-radius: 10px;
             cursor: pointer;
         }
-
+        #calc_people{
+            position:absolute;
+        }
+        #calc_people img {
+            position:absolute;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -221,9 +232,10 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
             <div id="calc_fors_1">NOT FORS Member</div>
         </div>
         <div id="calc_input">
+            <div id="calc_people"></div>
             <div id="calc_drivers_question">How many drivers you have?</div>
-            <div id="calc_drivers_num">6</div>
-            <input id="calc_slider" name="drivers" type="range" min=6 max=1001 step=1 value="6" />
+            <div id="calc_drivers_num">1</div>
+            <input id="calc_slider" name="drivers" type="range" min=1 max=1000 step=1 value="1" />
             <div id="calc_input_submit" class="button">Submit</div>
         </div>
 

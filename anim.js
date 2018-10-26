@@ -12,49 +12,29 @@
 			{
 				output:"Monthly subscription: ",
 				calc: function(n, _ranges, _data){
-					var r = -1;
-					var c = 0;
-					while(r < 0 && c < _ranges.length){
-						if(n >= _ranges[c][0] && n <= _ranges[c][1]){
-							r = c;
-						}
-						c++;
-					}
+					var r = getRange(n, _ranges);
 					return "£"+(Math.round((_ranges[r][1]*_data[r]/12)*10)/10);
 				}
 			},
 			{
 				output:"Yearly subscription: ",
 				calc: function(n, _ranges, _data){
-					var r = -1;
-					var c = 0;
-					while(r < 0 && c < _ranges.length){
-						if(n >= _ranges[c][0] && n <= _ranges[c][1]){
-							r = c;
-						}
-						c++;
-					}
+					var r = getRange(n, _ranges);
 					return "£"+(_ranges[r][1]*_data[r]);
 				}
 			},
 			{
 				output:"Savings over SUD: ",
 				calc: function(n, _ranges, _data){
-					var r = -1;
-					var c = 0;
-					while(r < 0 && c < _ranges.length){
-						if(n >= _ranges[c][0] && n <= _ranges[c][1]){
-							r = c;
-						}
-						c++;
-					}
+					var r = getRange(n, _ranges);
 					return "£"+(150*_ranges[r][1]-_ranges[r][1]*_data[r]);
 				}
 			}
 
 		];
+		
 		var ranges = [
-			[6,10],
+			[1,10],
 			[11,25],
 			[26,50],
 			[51,100],
@@ -124,22 +104,32 @@
 			width: (W-5*gap)/3,
 			height: 36,
 		}
+
+		var people_length = 7;
+		var people_state = [];
+		var people_gap = 40;
+
 		init = function() {
 			TweenPlugin.activate([CSSPlugin]);
 			$.id("wrapper").style.display = "block";
 			reset();
+			processPeople();
 			loadNew(0);
 			//$.id("wrapper").innerHTML = "Hello";
 		}();
 
 		function handleSlider(e){
+			var max = 1000;
 			var val = $.id("calc_slider").value;
-			$.id("calc_drivers_num").innerHTML = val + (val == 1001 ? "+" : "");
+			var s_val = getSectionValue(val, ranges, max);
+			checkPeople(val, ranges, max);
+			$.id("calc_drivers_num").innerHTML = (val == max ? "5000+" : s_val);
+			
 		}
 		function reset() {
 			$.set("calc_slider", {x:gap, y:320, width:W-4*gap});
 			$.id("calc_slider").addEventListener("input", handleSlider);
-			$.set("calc_drivers_num", {y:40, color:"#777777"});
+			$.set("calc_drivers_num", {y:263, color:"#777777"});
 			$.set("calc_cover", {autoAlpha:0});
 			$.id("calc_close").addEventListener("click", closeParser);
 			$.set("calc_input_submit", {
@@ -304,6 +294,62 @@
 		}
 		function closeParser(){
 			$.tween("calc_cover", 0.6, {autoAlpha:0, ease:Power1.easeInOut});
+		}
+
+		function getRange(n, _ranges){
+			var r = -1;
+			var c = 0;
+			while(r < 0 && c < _ranges.length){
+				if(n >= _ranges[c][0] && n <= _ranges[c][1]){
+					r = c;
+				}
+				c++;
+			}
+			return r;
+		}
+		function getSelection(n, _ranges, max){
+			var slice = Math.ceil(max/_ranges.length);
+			return Math.floor(n/slice);
+		}
+		function getSectionValue(n, _ranges, max){
+			var slice = Math.ceil(max/_ranges.length);
+			var r = getSelection(n, _ranges, max);
+			var perc = (n-r*slice)/slice
+			return Math.round((_ranges[r][1] - _ranges[r][0])*perc+_ranges[r][0]);
+		}
+
+		function processPeople(n, _ranges, max){
+			$.set("calc_people", {x:-gap, y:-passive_y})
+			for(var i = people_length-1; i >= 0; i--){
+				$.create("p_"+i, "calc_people", {alpha:0, y:people_gap}, "img/img_"+i+".png");
+				people_state.push(false);
+			}
+			$.create("p_start", "calc_people", {}, "img/img_start.png");
+		}
+		function checkPeople(n, _ranges, max){
+			var r = n == 1 ? -1 : getSelection(n, _ranges, max);
+			
+			for(var i = 0; i < _ranges.length; i++){
+				if(i <= r && !people_state[i]){
+					people_state[i] = true;
+					animatePeople("in", i);
+				}
+				if(i > r && people_state[i]){
+					people_state[i] = false;
+					animatePeople("out", i);
+				}
+			}
+		}
+		function animatePeople(dir, i){
+			var tw = {};
+			var t = 0.8;
+			if(dir == "in"){
+				tw = {y:0, alpha:1, ease:Back.easeOut}
+			}else{
+				t = 0.5;
+				tw = {y:people_gap, alpha:0, ease:Power2.easeIn}
+			}
+			$.tween("p_"+i, t, tw);
 		}
 	}
 })({
