@@ -6,14 +6,10 @@
     <meta name="ad.size" content="width=300,height=66"/>
     <title>ANET360 Calculator</title>
 
-    <script type="text/javascript" src="
-https://s0.2mdn.net/ads/studio/cached_libs/cssplugin_1.19.0_cfbff7d208ccfdbe176b9855af1eb1fa_min.js"></script>
-    <script type="text/javascript" src="
-https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3640a06ac39e9_min.js"></script>
-    <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/easepack_1.19.0_be87087c08fcec83e2b64c70571fe91f_min.js"></script>
+    <script type="text/javascript" src="src/TweenMax.min.js"></script>
     <script src="anim.js"></script>
    
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" /> -->
     <style type="text/css">
         
@@ -21,119 +17,41 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
 
         body{
             background-color: #222222;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 18px;
         }
         #wrapper {
-            margin-left: calc(50% - 369px);
+            margin-left: 20%;
             margin-top: 160px;
         }
         /*---- FOR ANIMATION ----*/
         #wrapper {
             background: #FFFFFF;
-            width:738px;
+            width:60%;
             height:500px;
             overflow: hidden;
             position:relative;
             display:none;
             /*ed5f2e*/
         }
-        #wrapper div {
-            position:absolute;
-        }
-        #calc_title, #calc_drivers_question, #calc_drivers_num {
-            width:100%;
-            text-align: center;
-            font-size:30px;
-            padding-top:10px;
-            color: #ed5f2e;
-        }
-        #calc_drivers_question {
-            padding-top:0px!important;
-            margin-top:-8px;
-        }
-        .button {
-            text-align: center;
-            justify-content: center;
-            display: -webkit-flex;
-            display: flex;
-            align-items: center;
-            border-radius:25px;
-            border: #ed5f2e 1px solid;
-            cursor: pointer;
-            background: #ed5f2e11;
-            -webkit-user-select: none;  
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .details {
-            align-items: left;
-            border-radius:25px;
-            border: #BBBBBB 1px solid;
-            pointer-events: none;
-            font-size:14px;
-        }
-        .button:hover{
-            background: #ed5f2e;
-            color: white;
-        }
-        .button:has(> div) {
-            pointer-events: none;
-        }
-        .active{
-            background: #ed5f2e;
-            color: white;
-        }
-        #calc_cover {
-            background: #FFFFFFEE;
-            color: #ed5f2e;
-            width:100%;
-            height:100%;
-        }
-        #calc_cover_output {
-            padding:40px;
-        }
-        #calc_cover_output div {
-            position:relative;
-        }
-        #calc_cover_output div span {
-            color: #777777;
-        }
-        #calc_close {
-            font-size:40px;
-            top:20px;
-            right:35px;
-            -webkit-user-select: none;  
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: pointer;
-        }
-        ul {
-            list-style-type: circle;
-            margin:10px;
-            margin-top:18px;
-        }
-        *:focus,
-        *:active {
-            outline: 0;
-        }
+        
+        
         input[type=range],
         input[type=range], 
         input[type=range] {
             -webkit-appearance: none;
             border-radius: 8px;
-            height: 7px;
-            border: 1px solid #bdc3c7;
-            background-color: #fff; 
+            height: 1px;
+            border: 1px solid #ebebeb;
+            background-color: #fff;
+            outline: none !important;
         }
         input[type='range']::-webkit-slider-thumb,
         input[type='range']::-webkit-slider-thumb,
         input[type='range']::-webkit-slider-thumb {
             -webkit-appearance: none;
-            background-color: #ed5f2e;
-            border: 0px solid #bdc3c7;
+            background-color: #ebebeb;
+            border: 0px solid #ebebeb;
             width: 20px;
             height: 20px;
             border-radius: 10px;
@@ -142,13 +60,13 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
 
         input[type=range]::-moz-range-track {
             border-radius: 8px;
-            height: 7px;
-            border: 1px solid #bdc3c7;
+            height: 1px;
+            border: 1px solid #ebebeb;
             background-color: #fff;
         }
         input[type=range]::-moz-range-thumb {
             background: #ed5f2e;
-            border: 1px solid #bdc3c7;
+            border: 1px solid #ebebeb;
             width: 20px;
             height: 20px;
             border-radius: 10px;
@@ -161,24 +79,64 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
         }
         input[type="range"]::-ms-track {
             border-radius: 8px;
-            height: 7px;
-            border: 1px solid #bdc3c7;
+            height: 1px;
+            border: 1px solid #ebebeb;
             background-color: #fff;
         }
         input[type="range"]::-ms-thumb {
-            background-color: #ed5f2e;
-            border: 1px solid #bdc3c7;
+            background-color: #ebebeb;
+            border: 1px solid #ebebeb;
             width: 20px;
             height: 20px;
             border-radius: 10px;
             cursor: pointer;
         }
-        #calc_people{
-            position:absolute;
+        #calc_title {
+            width:100%;
+            padding-top: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            text-align: center;
         }
-        #calc_people img {
+        #calc_text {
+            width:100%;
+            padding-top: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        #calc_input {
+            position: relative;
+            width:100%;
+            height:200px;
+        }
+        #calc_drivers_num {
+            width:15%;
+            padding-top: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        #calc_slider {
             position:absolute;
-            pointer-events: none;
+            width:60%;
+            left:20%;
+            top:35px;
+        }
+        .row div {
+            position:relative;
+            display:block;
+            float:left;
+            padding-top:10px;
+            text-align: right;
+            padding-left: 10px;
+        }
+        .col_first {
+            width:20%;
+
+        }
+        .col {
+            width:16%;
         }
     </style>
 </head>
@@ -188,61 +146,66 @@ https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.19.0_422f021fad4c20f20cf3
     <!-- <ft-default clicktag> -->
     
     <div id="wrapper">
-        <div id="calc_title">Choose Your Package</div>
-        <div id="calc_main_buttons">
-            <div id="calc_main_buttons_0">Workshop Based</div>
-            <div id="calc_main_buttons_1">Licence Based</div>
-            <div id="calc_main_buttons_0_details">
-                <ul>
-                    <li>Basic interactive Safe Urban Driving course delivered by our certified trainer</li>
-                    <li>Virtual Reality smartphone application</li>
-                    <li>Printable PDF course content</li>
-                    <li>Printable PDF workbook</li>
-                </ul>
-            </div>
-            <div id="calc_main_buttons_1_details">
-                <ul>
-                    <li>Virtual Reality smartphone application</li>
-                    <li>Printable PDF course content</li>
-                    <li>Printable PDF workbook</li>
-                </ul>
-            </div>
-        </div>
-        <div id="calc_sub_buttons">
-            <div id="calc_sub_buttons_0">Basic Package</div>
-            <div id="calc_sub_buttons_1">Pro Package</div>
-            <div id="calc_sub_buttons_0_details">
-                <ul>
-                    <li>Virtual Reality smartphone application</li>
-                    <li>Printable PDF course content</li>
-                    <li>Printable PDF workbook</li>
-                </ul>
-            </div>
-            <div id="calc_sub_buttons_1_details">
-                <ul>
-                    <li>Basic interactive Safe Urban Driving course delivered by our certified trainer</li>
-                    <li>Virtual Reality smartphone application</li>
-                    <li>Printable PDF course content</li>
-                    <li>Printable PDF workbook</li>
-                </ul>
-            </div>
-        </div>
-        <div id="calc_fors">
-            <div id="calc_fors_0">FORS Member</div>
-            <div id="calc_fors_1">NOT FORS Member</div>
-        </div>
+        <div id="calc_title">Impact</div>
+        <div id="calc_text">SEE HOW ANET360 INTERACTIVE SAFE URBAN DRIVING COURSE CAN TRANSFORM YOUR ORGANISATION</div>
         <div id="calc_input">
-            <div id="calc_people"></div>
-            <div id="calc_drivers_question">How many drivers you have?</div>
-            <div id="calc_drivers_num">1</div>
+            <div id="calc_drivers_num">10<br/>drivers</div>
             <input id="calc_slider" name="drivers" type="range" min=1 max=1000 step=1 value="1" />
-            <div id="calc_input_submit" class="button">Submit</div>
         </div>
 
-        <div id="calc_cover">
-            <div id="calc_cover_output">
+        <div id="calc_output">
+            <div class='row' id='row_0'>
+                <div class='col_first'>
+                </div>
+                <div class='col'>
+                    <div class='col_title'>Savings</div>
+                </div>
+                <div class='col'>
+                    <div class='col_title'>Time</div>
+                </div>
+                <div class='col'>
+                    <div class='col_title'>Cost</div>
+                </div>
+                <div class='col'>
+                    <div class='col_title'>Salary</div>
+                </div>
             </div>
-            <div id="calc_close">×</div>
+            <div class="spacer" style="clear: both;"></div>
+            <div class='row' id='row_1'>
+                <div class='col_first'>
+                    <div class='row_title'>Basic Package</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='saving_basic'>£170</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='time_basic'>£170</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='cost_basic'>£40</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='salary_basic'>£700</div>
+                </div>
+            </div>
+            <div class="spacer" style="clear: both;"></div>
+            <div class='row' id='row_2'>
+                <div class='col_first'>
+                    <div class='row_title'>Pro Package</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='saving_pro'>£170</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='time_pro'>£170</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='cost_pro'>£40</div>
+                </div>
+                <div class='col'>
+                    <div class='amount' id='salary_pro'>£700</div>
+                </div>
+            </div>
         </div>
     </div>
 
