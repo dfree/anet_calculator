@@ -28,11 +28,12 @@
         #wrapper {
             background: #FFFFFF;
             width:60%;
-            height:500px;
+            height:470px;
             overflow: hidden;
             position:relative;
             display:none;
             /*ed5f2e*/
+            min-width: 810px;
         }
         
         
@@ -91,6 +92,9 @@
             border-radius: 10px;
             cursor: pointer;
         }
+        #calculator {
+            margin:0 10% 0 10%;
+        }
         #calc_title {
             width:100%;
             padding-top: 20px;
@@ -99,7 +103,8 @@
             text-align: center;
         }
         #calc_text {
-            width:100%;
+            width:80%;
+            margin-left: 10%;
             padding-top: 20px;
             font-size: 14px;
             text-transform: uppercase;
@@ -108,7 +113,7 @@
         #calc_input {
             position: relative;
             width:100%;
-            height:200px;
+            height:110px;
         }
         #calc_drivers_num {
             width:15%;
@@ -116,6 +121,7 @@
             font-size: 20px;
             text-transform: uppercase;
             text-align: center;
+            margin-left: 3%;
         }
         #calc_slider {
             position:absolute;
@@ -128,89 +134,104 @@
             display:block;
             float:left;
             padding-top:10px;
-            text-align: right;
             padding-left: 10px;
+            background:#faf8f7;
         }
         .col_first {
             width:20%;
-
         }
         .col {
             width:16%;
+        }
+        #output_container {
+            width:auto;
+            height:auto;
+        }
+        .message {
+            font-size:11px;
+            margin-right:20px;
+            height:70px;
+        }
+        .border {
+            border-left: 1px solid #BBB;
         }
     </style>
 </head>
 
 
 <body>
-    <!-- <ft-default clicktag> -->
-    
     <div id="wrapper">
-        <div id="calc_title">Impact</div>
-        <div id="calc_text">SEE HOW ANET360 INTERACTIVE SAFE URBAN DRIVING COURSE CAN TRANSFORM YOUR ORGANISATION</div>
-        <div id="calc_input">
-            <div id="calc_drivers_num">10<br/>drivers</div>
-            <input id="calc_slider" name="drivers" type="range" min=1 max=1000 step=1 value="1" />
-        </div>
+        <div id="calculator">
+            <div id="calc_title">Impact</div>
+            <div id="calc_text">SEE HOW ANET360 INTERACTIVE SAFE URBAN DRIVING COURSE CAN TRANSFORM YOUR ORGANISATION</div>
+            <div id="calc_input">
+                <div id="calc_drivers_num">10<br/>drivers</div>
+                <input id="calc_slider" name="drivers" type="range" min=1 max=1000 step=1 value="1" />
+            </div>
+            <div id="calc_output">
+                <div class='row' id='row_0'>
+                    <div class='col_first'>
+                        <div class='col_title'>&nbsp;</div>
+                    </div>
+                    <div class='col'>
+                        <div class='col_title'>Savings</div>
+                    </div>
+                    <div class='col'>
+                        <div class='col_title'>Time</div>
+                    </div>
+                    <div class='col'>
+                        <div class='col_title'>Cost</div>
+                    </div>
+                    <div class='col'>
+                        <div class='col_title'>Salary</div>
+                    </div>
+                </div>
+                <div class="spacer" style="clear: both;"></div>
 
-        <div id="calc_output">
-            <div class='row' id='row_0'>
-                <div class='col_first'>
+                <div class='row' id='row_1'>
+                    <div class='col_first'>
+                        <div class='row_title'>Basic Package</div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='saving_basic'></div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='time_basic'></div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='cost_basic'></div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='salary_basic'></div>
+                    </div>
                 </div>
-                <div class='col'>
-                    <div class='col_title'>Savings</div>
-                </div>
-                <div class='col'>
-                    <div class='col_title'>Time</div>
-                </div>
-                <div class='col'>
-                    <div class='col_title'>Cost</div>
-                </div>
-                <div class='col'>
-                    <div class='col_title'>Salary</div>
-                </div>
-            </div>
-            <div class="spacer" style="clear: both;"></div>
-            <div class='row' id='row_1'>
-                <div class='col_first'>
-                    <div class='row_title'>Basic Package</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='saving_basic'>£170</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='time_basic'>£170</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='cost_basic'>£40</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='salary_basic'>£700</div>
-                </div>
-            </div>
-            <div class="spacer" style="clear: both;"></div>
-            <div class='row' id='row_2'>
-                <div class='col_first'>
-                    <div class='row_title'>Pro Package</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='saving_pro'>£170</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='time_pro'>£170</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='cost_pro'>£40</div>
-                </div>
-                <div class='col'>
-                    <div class='amount' id='salary_pro'>£700</div>
+                <div class="spacer" style="clear: both;"></div>
+                <div class='row' id='row_2'>
+                    <div class='col_first'>
+                        <div class='row_title'>Pro Package</div>
+                        <div class="spacer" style="clear: both;"></div>
+                        <div class='message'>&nbsp;</div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='saving_pro'></div>
+                        <div class='message'>salary saved over traditional driver training</div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='time_pro'></div>
+                        <div class='message'>driver time saved by using ANET36</div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='cost_pro'></div>
+                        <div class='message'>per driver to do the Safe Urban Driving course</div>
+                    </div>
+                    <div class='col'>
+                        <div class='amount border' id='salary_pro'></div>
+                        <div class='message'>saved because drivers can spend more time on roads</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--</ft-default>
-    <script src="http://cdn.flashtalking.com/frameworks/js/api/2/9/html5API.js"></script>-->
 </body>
 
 </html>
